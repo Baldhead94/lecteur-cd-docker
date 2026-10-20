@@ -1,0 +1,16 @@
+services:
+  lecteur-cd:
+    build: .
+    container_name: lecteur-cd
+    ports:
+      - "8095:8095"
+    devices:
+      - /dev/sr0:/dev/sr0
+    environment:
+      CD_DEVICE: /dev/sr0
+      PORT: "8095"
+    restart: unless-stopped
+    # Si le lecteur USB exige l'accès SCSI générique, ajouter :
+    # devices:
+    #   - /dev/sr0:/dev/sr0
+    #   - /dev/sg2:/dev/sg2
